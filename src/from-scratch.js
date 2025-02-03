@@ -17,12 +17,14 @@ class Circle {
   getCircumference() {
     return 2 * Math.PI * this.radius;
   }
+  /*
+  The `this` keyword refers to the current instance of the class. Below, we reference the `color` property of the current instance that is invoking this method.
+  */
   draw(){
     return `Drawing a ${this.color} circle.`
   }
   /*
-  The `this` keyword refers to the current instance of the class.
-  Here, we used `this.color` to access the color property of the instance and
+  Below, we used `this.color` to access the color property of the instance and
   then assigned it a new value, just like you'd update a property in an object.
   */
   changeColor(newColor){
@@ -46,6 +48,7 @@ class Circle {
     this.firstName = firstName;
     this.lastName = lastName;
     this.#balance = balance;
+    // Each time a new account is created, add its balance to the static total
     BankAccount.#total += balance;
   }
   showBalance(){
@@ -73,6 +76,7 @@ class Circle {
   Static methods work the same way as static properties.
   This means they belong to the class itself, not to individual objects created from the class.
   For example, you can call BankAccount.getTotalHoldings() without needing an instance.
+  Since `BankAccount.#total` is a "pass-by-value" type (a number), we don't need to worry about making a copy of it before returning.
   */
   static getTotalHoldings(){
      return BankAccount.#total;
